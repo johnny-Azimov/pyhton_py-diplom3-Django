@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="header">
+        <h3>Основные характеристики</h3>
+        <input type="checkbox"> - Показать/Скрыть
+        <div class="show_prop">
+            <table class="u-full-width" border="1" width="50%" cellpadding="5">
+                <tr><th>Продукт</th><td>{{ detailed.product }}</td></tr>
+                <tr><th>Символическое значение</th><td>{{ detailed.symbol }}</td></tr>
+                <tr><th>Раритет / Эксклюзив</th><td>{{ detailed.rarity }}</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

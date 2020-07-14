@@ -1,0 +1,40 @@
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="header">
+        <h3>Основные характеристики</h3>
+        <input type="checkbox"> - показать/скрыть
+        <div class="show_prop">
+            <table class="u-full-width" border="1" width="50%" cellpadding="5">
+                <tr><th>Продукт</th><td>{{ detailed.product }}</td></tr>
+                <tr><th>Модель</th><td>{{ detailed.model }}</td></tr>
+                <tr><th>Процессор</th><td>{{ detailed.cpu }}</td></tr>
+                <tr><th>Количество ядер</th><td>{{ detailed.cpu_cores }}</td></tr>
+                <tr><th>ОЗУ, Гб</th><td>{{ detailed.ram }}</td></tr>
+                <tr><th>Встроенная память, Гб</th><td>{{ detailed.int_flash }}</td></tr>
+                <tr><th>Тип внешней пимяти</th><td>{{ detailed.ext_flash_type }}</td></tr>
+                <tr><th>Внешняя память, Гб</th><td>{{ detailed.ext_flash}}</td></tr>
+                <tr><th>Камеры</th><td>{{ detailed.cam }}</td></tr>
+                <tr><th>Диапазоны GSM</th><td>{{ detailed.gsm_ranges }}</td></tr>
+                <tr><th>Интернет</th><td>{{ detailed.internet }}</td></tr>
+                <tr><th>Эл. Платежи</th><td>{{ detailed.pay }}</td></tr>
+                <tr><th>Дисплей</th><td>{{ detailed.display_type}}</td></tr>
+                <tr><th>Размер дисплея</th><td>{{ detailed.display_size}}</td></tr>
+                <tr><th>Навигация</th><td>{{ detailed.nav}}</td></tr>
+                <tr><th>ОС</th><td>{{ detailed.os}}</td></tr>
+                <tr><th>Тип SIM</th><td>{{ detailed.sim_type}}</td></tr>
+                <tr><th>Количество SIM</th><td>{{ detailed.sim_cards}}</td></tr>
+                <tr><th>Аккумулятор, мАч</th><td>{{ detailed.accum_capacity}}</td></tr>
+                <tr><th>Корпус</th><td>{{ detailed.body}}</td></tr>
+                <tr><th>Цвет</th><td>{{ detailed.color}}</td></tr>
+                <tr><th>Габариты, h/w/t - мм</th><td>{{ detailed.dimensions}}</td></tr>
+                <tr><th>Вес, гр</th><td>{{ detailed.weight}}</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

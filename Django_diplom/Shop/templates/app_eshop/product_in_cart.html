@@ -1,0 +1,17 @@
+{% load static %}
+{% load eshop_filters %}
+
+{% block content %}
+
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div style="text-align: left;">
+            <h6 class="my-0">{{ product.name }}</h6>
+            <span class="text-left">
+                ({{product.price}}р. x {{product.quantity}}={{product.price|mul:product.quantity}}р.)
+            </span><br>
+            <small class="text-muted">{{ product.description }}</small>
+          </div>
+          <span class="text-muted">{{ product.quantity }}</span>
+        </li>
+
+{% endblock %}

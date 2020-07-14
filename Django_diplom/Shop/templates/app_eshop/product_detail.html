@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load eshop_filters %}
+{% load eshop_app_tags %}
+{% load static %}
+
+{% block content %}
+{% include 'menu.html' with active_page="gadgets" menu=drop_menu %}
+
+<style>
+    .show_prop { display: none; }
+    input:checked + .show_prop { display: block; }
+    li { list-style-type: none; } /* Убираем маркеры */
+</style>
+
+
+  <main role="main">
+
+    <div class="container mt-3">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-12">
+          <h2>{{product.name}}</h2>
+
+          <img src="/media/{{product.image}}" width="120">
+
+          <p>{{detailed.description}}</p>
+          <b class=text-light">{{product.price}}р.</b>
+
+          <form method="post" action="{% url name_url product.slug %}">
+            {% csrf_token %}
+            <input type="hidden" name="merchandise_id" value="1">
+            <input type="hidden" name="template" value="product">
+            <input type="hidden" name="description" value="{{detailed.description}}">
+            <input type="submit"
+                   class="btn btn-secondary"
+                   onclick="return confirmation('Отправить товар в корзину?');"
+                   value="Добавить в корзину »">
+          </form>
+
+        </div>
+      </div>
+      <hr>
+      {% if product.section.name == section_name %}
+        {% include product_template with detailed=detailed %}
+      {% endif %}
+      <hr>
+      {% for review in reviews %}
+          {% get_stars review.rating as stars %}
+          {{ stars }} <span>{{ review.name }}</span>
+          <p style="width:30%">{{ review.text }}</p>
+      {%endfor%}
+      <hr>
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+          <h4>Оставте отзыв:</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <!--input type="submit" value="Отправить отзыв"/-->
+                <button
+                        type="submit" class="btn btn-primary"
+                        onclick="return confirmation('Оставить отзыв?');">
+                  Оставить
+                </button>
+            </form>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+  </main>
+
+{% endblock %}
+

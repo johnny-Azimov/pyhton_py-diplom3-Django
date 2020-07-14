@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'menu.html' with active_page="main" menu=drop_menu %}
+
+
+  <main role="main">
+
+    <div class="container mb-5">
+      <!-- Example row of columns -->
+
+      <div class="row">
+          {% for phone in phones %}
+            {% include 'app_eshop/product_snippet.html' with product=phone product_url=phone.section.slug %}
+          {%endfor%}
+      </div>
+    </div> <!-- /container -->
+
+
+    <div class="container mb-5">
+      <!-- Example row of columns -->
+      <div class="row">
+        {% for product in other_products %}
+          {% include 'app_eshop/product_snippet.html' with product=product product_url=product.section %}
+        {%endfor%}
+      </div>
+
+     </div>
+  </main>
+
+{% endblock %}

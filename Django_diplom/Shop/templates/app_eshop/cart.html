@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% include 'menu.html' with menu=drop_menu %}
+
+{% if status == 'order send' %}
+  <h2>Ваш заказ отправлен!</h2>
+{% else %}
+  <div class="container mt-3" >
+    <div class="row">
+    <div class="col-lg-6 col-md-9 col-sm-12 order-md-2 mb-4" style=" margin: auto;">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Ваша корзина:</span>
+        <span class="badge badge-primary badge-pill">{{ price_common }}руб.</span>
+        <span class="badge badge-secondary badge-pill">{{ qty_common }}</span>
+      </h4>
+      <ul class="list-group mb-3">
+
+          {% for product in products %}
+            {% include 'app_eshop/product_in_cart.html' with product=product %}
+          {%endfor%}
+
+      </ul>
+
+      <form class="card p-2" method="post" action="">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{user.email}}">
+        <input type="hidden" name="products" value="{{products}}">
+        <input type="hidden" name="qty_common" value="{{qty_common}}">
+        <input type="hidden" name="price_common" value="{{price_common}}">
+
+        {% if request.user.is_authenticated %}
+          <button type="submit" class="btn btn-secondary">Заказать</button>
+        {% else %}
+          <button type="submit" disabled class="btn btn-secondary">Заказать</button>
+          <br>
+          <a href="/account/login" class="text-center badge badge-warning">НЕОБХОДИМА АВТОРИЗАЦИЯ!</a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
