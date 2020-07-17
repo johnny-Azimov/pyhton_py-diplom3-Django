@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+
+<div class="container text-center"  style="width: 300px">
+
+        <form class="form-signin" action="{% url 'user_login' %}"  method='post'>
+             {% csrf_token %}
+            <input type="hidden" name="next" value="">
+            <img class="mb-4" src="/media/logo.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+
+            <label for="username" class="sr-only">Логин:</label>
+            <input type="text" id="username" class="form-control" placeholder="Логин" name="username"
+                   value="" required="" autofocus="" data-cip-id="inputUsername">
+
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email"
+                   value="" required="" data-cip-id="inputEmail">
+
+            <label for="password" class="sr-only">Пароль:</label>
+            <input type="password" id="password" class="form-control" placeholder="Пароль" name="password"
+                   value="" required="" data-cip-id="inputPassword" >
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+
+        {% if message == 'error_login'  %}
+            <p class="alert-danger">Сожалеем, вы неправильно ввели регистрационные данные.</p>
+        {% elif message == 'user_disabled' %}
+            <p class="alert-danger">Сожалеем, но пользователь заблокирован.</p>
+        {% endif %}
+        <br>
+        <a href="/account/register">Регистрация нового пользователя</a>
+
+    </div>
+{% endblock %}

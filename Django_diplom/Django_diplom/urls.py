@@ -22,16 +22,30 @@ from django.conf.urls import url
 from django.conf import settings
 from django.urls import include
 
-from Shop.views import main, gadgets, product
+from Shop.views import main, gadgets, product, accessories, cart
+from app_users.views import user_register, user_logout, user_login
+
 
 urlpatterns = [
     path('', main),
     path('index/', main, name='main'),
     path('admin/', admin.site.urls),
+    path('accessories/', accessories, name='accessories'),
+    path('cart/', cart, name='cart'),
 
+    url(r'^account/register/$', user_register, name='user_register'),
+    url(r'^account/login/$', user_login, name='user_login'),
+    url(r'^account/logout/$', user_logout, name='user_logout'),
     url(r'section/(?P<slug>[\w-]+)/$', gadgets, name='index'),
     url(r'(?P<slug>[\w-]+)/$', product, name='product')
 ]
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
 
 
 if settings.DEBUG:

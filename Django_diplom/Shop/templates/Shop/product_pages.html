@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{title}}</h1>
+        <nav aria-label="Pagination">
+            <ul class="pagination justify-content-left">
+                {% if prev_page_url %}
+                    <li class="page-item">
+                {% else %}
+                    <li class="page-item disabled">
+                {% endif %}
+                <a class="page-link" href="{{ prev_page_url }}"><<</a></li>
+
+                {% for num in num_pages %}
+                    {% if num == current_page %}
+                        <li class="page-item active"><a class="page-link" href="">{{ current_page }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {%endfor%}
+
+                {% if next_page_url %}
+                    <li class="page-item">
+                {% else %}
+                    <li class="page-item disabled">
+                {% endif %}
+                <a class="page-link" href="{{ next_page_url }}">>></a></li>
+            </ul>
+        </nav>
+        <br>
+        <div class="row">
+          {% for product_show in products %}
+            {% include 'Shop/product_snippet.html' with product=product_show product_url=product_show.section %}
+          {%endfor%}
+        </div>
+    </div>
+{% endblock %}

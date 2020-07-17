@@ -13,7 +13,7 @@
 
       <div class="row">
           {% for phone in phones %}
-            {% include 'app_eshop/product_snippet.html' with product=phone product_url=phone.section.slug %}
+            {% include 'Shop/product_snippet.html' with product=phone product_url=phone.section.slug %}
           {%endfor%}
       </div>
     </div> <!-- /container -->
@@ -23,7 +23,7 @@
       <!-- Example row of columns -->
       <div class="row">
         {% for product in other_products %}
-          {% include 'app_eshop/product_snippet.html' with product=product product_url=product.section %}
+          {% include 'Shop/product_snippet.html' with product=product product_url=product.section %}
         {%endfor%}
       </div>
 

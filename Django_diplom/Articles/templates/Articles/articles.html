@@ -1,0 +1,26 @@
+{% load static %}
+{% load articles_filters %}
+
+{% block content %}
+
+    <div class="row">
+      {% for article in articles %}
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="/static/img/articles/{{ article.image }}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">{{ article.title }}</a>
+            </h4>
+            <p class="card-text">{{ article.text|text_short:256 }}</p>
+            {% for product in article.products.all %}
+
+                <a href="./{{product.slug}}"><span class="badge badge-success">{{ product.name }}</span></a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}
