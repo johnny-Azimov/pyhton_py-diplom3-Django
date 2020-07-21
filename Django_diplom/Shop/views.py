@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
 
+from Articles.models import Article
 from Shop.models import Section, Product, Review, Phone, Cultural, Miscellaneous, Cart, ProductsInCart
 from django.contrib.auth.models import User
 from .forms import ReviewForm
@@ -15,10 +16,14 @@ def main(request):
     section_name = Section.objects.filter(location='section 1')[0]
     phones = Product.objects.filter(section__name=section_name).order_by("-id")[0:3]
     other_products = Product.objects.exclude(section__name=section_name).order_by("-id")[0:10]
+    articles_phones = Article.objects.filter(section__name=section_name).order_by('published_at')[0:3]
+    articles_other = Article.objects.exclude(section__name=section_name).order_by('published_at')[0:3]
 
     context = {
         'phones': phones,
         'other_products': other_products,
+        'articles_phones': articles_phones,
+        'articles_other': articles_other
     }
 
     return render(request, 'index.html', context)

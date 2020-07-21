@@ -7,6 +7,13 @@
 
 
   <main role="main">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Добро пожаловать на сайт магазина</h1>
+        <p>Лучшие мобилы только у нас:</p>
+        {% include 'Articles/articles.html' with articles=articles_phones %}
+      </div>
+    </div>
 
     <div class="container mb-5">
       <!-- Example row of columns -->
@@ -18,6 +25,13 @@
       </div>
     </div> <!-- /container -->
 
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Не знаете что одеть летом?</h1>
+        <p>Вот что мы можем предложить:</p>
+        {% include 'Articles/articles.html' with articles=articles_other %}
+      </div>
+    </div>
 
     <div class="container mb-5">
       <!-- Example row of columns -->
